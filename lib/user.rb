@@ -1,3 +1,4 @@
+require 'pry'
 class User
   @@friends = []
   attr_accessor :id, :recieve, :give
@@ -17,6 +18,7 @@ class User
   def self.show_balances(data)
     if !data[:user_ids].empty?
       users = []
+      binding.pry
       @@friends.each do |f|
         users.push(f) if data[:user_ids].include?(f.id)
       end
@@ -81,13 +83,13 @@ class User
     end
   end
 
-  def calcualte_percentage(value, amount)
+  def self.calcualte_percentage(value, amount)
     percentage = value / 100.to_f
     actual_amount = percentage * amount
     return actual_amount
   end
 
-  def calculate_share(share, amount, total_shares)
+  def self.calculate_share(share, amount, total_shares)
     share / total_shares.to_f * amount
   end
 end

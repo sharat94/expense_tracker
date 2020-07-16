@@ -1,3 +1,4 @@
+require 'pry'
 class Parser
   class << self
     def parse_expense(input)
@@ -8,7 +9,7 @@ class Parser
       amount = parsed_input[2]
       debitor_count = parsed_input[3].to_i
       debitor_ids = []
-      1..debitor_count.times.each do |position|
+      (1..debitor_count).each do |position|
         debitor_id = parsed_input[3 + position]
         User.new(debitor_id).find_or_create
         debitor_ids.push(debitor_id)
